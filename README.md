@@ -112,3 +112,35 @@ The system runs on a **Raspberry Pi 4** central compute node, communicating asyn
 * **Package:** `deliverybot_manual_control`
 * **Published Topics:** `/cmd_vel_input` (`geometry_msgs/msg/Twist`)
 * **Description:** Non-blocking terminal keyboard teleoperation interface (`W/A/S/D/Space`). Converts user keypresses into standard linear and angular velocity command inputs.
+
+
+
+
+## 📊 Dataset & Machine Learning Logging Format
+
+Data collected via `cmd_vel_ml_logger_node` is organized inside `dataset/` for direct model ingestion (e.g., PyTorch / TensorFlow End-to-End Behavioral Cloning or Imitation Learning):
+
+```text
+dataset/
+└── Corridor1_ML/
+    ├── Corridor1_ML_ml_dataset.csv
+    └── images/
+        ├── Corridor1_ML_frame_000000.jpg
+        ├── Corridor1_ML_frame_000001.jpg
+        └── Corridor1_ML_frame_000002.jpg
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
