@@ -33,6 +33,7 @@ The system runs on a **Raspberry Pi 4** central compute node, communicating asyn
          v                             v
   2x L298N Drivers            4x HC-SR04 Sensors
  + 4x DC Motors               (Front, Left, Right, Back)
+```
 
 
 📁 Repository & Package Structure
