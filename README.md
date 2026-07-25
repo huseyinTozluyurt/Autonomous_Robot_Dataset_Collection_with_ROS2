@@ -1,4 +1,4 @@
-# 🤖 Indoor Autonomous Delivery Robot (ROS 2 Workspace)
+# Indoor Autonomous Delivery Robot (ROS 2 Workspace)
 
 [![ROS 2](https://img.shields.io/badge/ROS2-Humble%20%7C%20Jazzy-blue?logo=ros&logoColor=white)](https://docs.ros.org/)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-green?logo=python&logoColor=white)](https://www.python.org/)
@@ -11,7 +11,7 @@ The system runs on a **Raspberry Pi 4** central compute node, communicating asyn
 
 ---
 
-## 📸 System Overview & Hardware Architecture
+## System Overview & Hardware Architecture
 
 ```text
                      +-----------------------------------+
@@ -35,7 +35,7 @@ The system runs on a **Raspberry Pi 4** central compute node, communicating asyn
  + 4x DC Motors               (Front, Left, Right, Back)
 ```
 
-
+## Hardware Architecture
 
 | Component | Hardware Specification | Function / Interface |
 | :--- | :--- | :--- |
