@@ -62,3 +62,53 @@ The system runs on a **Raspberry Pi 4** central compute node, communicating asyn
 | **`deliverybot_stm32`** | Serial bridges for Arduino motor driver & STM32 hardware |
 
 
+## 🕹️ Core ROS 2 Nodes & Architecture
+
+### 1. `guided_motor_control_node`
+* **Package:** `deliverybot_stm32`
+* **Hardware Interface:** `/dev/ttyUSB0` (Arduino Uno @ 115200 baud)
+* **Subscribed Topics:** `/cmd_vel` (`geometry_msgs/msg/Twist`)
+* **Published Topics:** `/imu/yaw` (`std_msgs/msg/Float32`)
+* **Description:** Translates high-level ROS 2 velocity commands into ASCII motor drive frames for the Arduino motor controller. Reads onboard MPU6050 telemetry, publishes continuous yaw heading feedback, and executes closed-loop drift corrections using local state calibration files (`~/.ros/deliverybot/lateral_error.txt`).
+
+---
+
+### 2. `serial_bridge_node`
+* **Package:** `deliverybot_stm32`
+* **Hardware Interface:** `/dev/ttyUSB1` (STM32F103 "Blue Pill")
+* **Published Topics:** `/ultrasonic` (`std_msgs/msg/Float32MultiArray`)
+* **Description:** Asynchronously polls the STM32 microcontroller to parse 4-channel HC-SR04 ultrasonic time-of-flight measurements. Publishes structured distance arrays (`[front, left, right, back]`) in centimeters at high frequency.
+
+---
+
+### 3. `camera_node`
+* **Package:** `deliverybot_camera`
+* **Hardware Interface:** `/dev/video0` (Konftel Cam10 via V4L2)
+* **Published Topics:** `/camera/image_raw` (`sensor_msgs/msg/Image`)
+* **Description:** Captures high-definition webcam frames at 640x480 resolution (30 FPS) using OpenCV's V4L2 backend and converts raw frames into standardized ROS 2 `Image` messages via `cv_bridge`.
+
+---
+
+### 4. `cmd_vel_ml_logger_node`
+* **Package:** `deliverybot_recording`
+* **Subscribed Topics:** * `/camera/image_raw` (`sensor_msgs/msg/Image`)
+  * `/cmd_vel` (`geometry_msgs/msg/Twist`)
+  * `/imu/yaw` (`std_msgs/msg/Float32`)
+  * `/ultrasonic` (`std_msgs/msg/Float32MultiArray`)
+* **Description:** Multi-modal data acquisition engine for Imitation Learning and Behavioral Cloning. Captures synchronized 30 FPS camera frames alongside nanosecond-timestamped CSV records of velocity requests, wheel PWMs, heading angles, and proximity measurements.
+
+---
+
+### 5. `obstacle_avoidance_node`
+* **Package:** `deliverybot_safety`
+* **Subscribed Topics:** * `/cmd_vel_input` (`geometry_msgs/msg/Twist`)
+  * `/ultrasonic` (`std_msgs/msg/Float32MultiArray`)
+* **Published Topics:** `/cmd_vel` (`geometry_msgs/msg/Twist`)
+* **Description:** Active safety multiplexer node. Evaluates incoming velocity requests against real-time ultrasonic sensor measurements from the STM32. Enforces dynamic speed reduction or emergency stopping (< 25 cm) before publishing safe commands to the motor controller.
+
+---
+
+### 6. `manual_drive_node`
+* **Package:** `deliverybot_manual_control`
+* **Published Topics:** `/cmd_vel_input` (`geometry_msgs/msg/Twist`)
+* **Description:** Non-blocking terminal keyboard teleoperation interface (`W/A/S/D/Space`). Converts user keypresses into standard linear and angular velocity command inputs.
