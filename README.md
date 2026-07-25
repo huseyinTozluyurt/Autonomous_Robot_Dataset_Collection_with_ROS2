@@ -206,7 +206,31 @@ ros2 run deliverybot_manual_control manual_drive_node
 ```
 
 
+### 🎮 Teleoperation Keyboard Controls
 
+When operating the keyboard controller (`manual_drive_node`), ensure the active terminal window remains focused.
+
+| Key Command | Motion / Action | Behavior Description |
+| :---: | :--- | :--- |
+| <kbd>W</kbd> | **Drive Forward** | Accelerates forward with active IMU yaw drift compensation |
+| <kbd>S</kbd> | **Reverse Drive** | Reverses direction linear motion |
+| <kbd>A</kbd> | **Steer Left** | Executes proportional rotational left turn |
+| <kbd>D</kbd> | **Steer Right** | Executes proportional rotational right turn |
+| <kbd>Space</kbd> | **Emergency Stop** | Immediately zero-out linear and angular velocities |
+| <kbd>Ctrl</kbd> + <kbd>C</kbd> | **Exit & Save** | Safely terminates node execution and serializes recorded logs |
+
+
+
+### 🎮 Teleoperation Controls
+
+Ensure your terminal cursor is inside the `manual_drive_node` process window while driving:
+
+* <kbd>W</kbd> — **Drive Forward:** Forward motion with IMU closed-loop heading guidance.
+* <kbd>S</kbd> — **Reverse:** Linear backward movement.
+* <kbd>A</kbd> — **Turn Left:** In-place or rotational left pivot.
+* <kbd>D</kbd> — **Turn Right:** In-place or rotational right pivot.
+* <kbd>Space</kbd> — **Force Halt:** Instant safety emergency stop (`/cmd_vel` zeroed).
+* <kbd>Ctrl</kbd> + <kbd>C</kbd> — **Shutdown:** Gracefully disconnects topics and flushes dataset CSV buffers.
 
 
 
