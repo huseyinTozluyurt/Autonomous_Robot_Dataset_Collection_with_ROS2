@@ -36,10 +36,10 @@ The system runs on a **Raspberry Pi 4** central compute node, communicating asyn
 ```
 
 
-📁 Repository & Package Structure
+## 📁 Repository & Package Structure
 The repository is structured as a standard colcon workspace (deliverybot_ws/src):
 
-
+```text
 deliverybot_ws/
 └── src/
     ├── deliverybot_bringup/         # System launch files and parameter YAML configs
@@ -52,3 +52,8 @@ deliverybot_ws/
     ├── deliverybot_recording/      # Multi-modal machine learning dataset recorder
     ├── deliverybot_safety/         # Dynamic ultrasonic obstacle avoidance layer
     └── deliverybot_stm32/          # Serial bridges for Arduino & STM32 hardware
+```
+
+
+
+
