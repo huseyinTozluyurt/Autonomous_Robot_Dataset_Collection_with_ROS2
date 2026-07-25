@@ -170,27 +170,6 @@ source install/setup.bash
 ### 2. Running Data Collection & Driving | Multi-Terminal Execution Quick Reference
 Open separate terminals (or use tmux), source install/setup.bash in each, and run:
 
-
-
-```bash
-source ~/deliverybot_ws/install/setup.bash
-```
-
-| Order | Subsystem / Node | Interfaces / Topics | Execution Command |
-| :---: | :--- | :--- | :--- |
-| 1️⃣ | **Guided Motor Driver** | Arduino (`/dev/ttyUSB0`) <br> Sub: `/cmd_vel` <br> Pub: `/imu/yaw` | `ros2 run deliverybot_stm32 guided_motor_control_node` |
-| 2️⃣ | **Ultrasonic Sensor Bridge** | STM32 (`/dev/ttyUSB1`) <br> Pub: `/ultrasonic` | `ros2 run deliverybot_stm32 serial_bridge_node` |
-| 3️⃣ | **Konftel Camera Publisher** | Webcam (`/dev/video0`) <br> Pub: `/camera/image_raw` | `ros2 run deliverybot_camera camera_node` |
-| 4️⃣ | **Obstacle Avoidance Safety** | Sub: `/cmd_vel_input`, `/ultrasonic` <br> Pub: `/cmd_vel` | `ros2 run deliverybot_safety obstacle_avoidance_node` |
-| 5️⃣ | **ML Dataset Logger** | Sub: Camera, IMU, Proximity <br> Param: `session_name` | `ros2 run deliverybot_recording cmd_vel_ml_logger_node --ros-args -p session_name:=Corridor1_ML` |
-| 6️⃣ | **Teleop Keyboard Driver** | Keyboard (`WASD` Space) <br> Pub: `/cmd_vel_input` | `ros2 run deliverybot_manual_control manual_drive_node` |
-
-
-
-### 🖥️ Launching system nodes (Multi-Terminal Setup)
-
-Open 6 separate terminals (or use a `tmux` session). Source the ROS 2 workspace environment in each before launching the corresponding node:
-
 ```bash
 source ~/deliverybot_ws/install/setup.bash
 ```
