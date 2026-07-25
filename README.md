@@ -54,6 +54,19 @@ deliverybot_ws/
     └── deliverybot_stm32/          # Serial bridges for Arduino & STM32 hardware
 ```
 
+## 📁 Package Architecture
 
+| Package Name | Description & Functionality |
+| :--- | :--- |
+| **`deliverybot_bringup`** | System launch files and parameter YAML configs |
+| **`deliverybot_camera`** | V4L2 USB camera stream publisher (`/camera/image_raw`) |
+| **`deliverybot_description`** | Robot URDF models and spatial transformations |
+| **`deliverybot_interfaces`** | Custom ROS 2 `.msg` and `.srv` interface definitions |
+| **`deliverybot_manual_control`** | Non-blocking terminal keyboard teleop driver |
+| **`deliverybot_navigation`** | Autonomous trajectory and path planning nodes |
+| **`deliverybot_perception`** | Computer vision and segmentation algorithms |
+| **`deliverybot_recording`** | Multi-modal machine learning dataset recorder |
+| **`deliverybot_safety`** | Dynamic ultrasonic obstacle avoidance layer |
+| **`deliverybot_stm32`** | Serial bridges for Arduino motor driver & STM32 hardware |
 
 
