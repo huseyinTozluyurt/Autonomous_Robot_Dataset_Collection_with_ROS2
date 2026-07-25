@@ -1,0 +1,27 @@
+# Ignore ROS2 build & install outputs
+build/
+install/
+log/
+
+# Ignore Python caches & virtual environments
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+
+# Ignore local user state & calibration files
+.ros/
+*.txt
+
+# Ignore large datasets & recorded camera frames
+dataset/
+sensor_logs/
+camera_captures/
+*.jpg
+*.png
+*.csv
+
+# Ignore VSCode / IDE config folders
+.vscode/
+.idea/
