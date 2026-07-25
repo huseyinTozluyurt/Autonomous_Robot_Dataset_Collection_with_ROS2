@@ -11,6 +11,9 @@ The system runs on a **Raspberry Pi 4** central compute node, communicating asyn
 
 ---
 
+<img width="4608" height="3456" alt="robot" src="https://github.com/user-attachments/assets/3e61c57c-7b7c-42ba-a0af-e3b6669eef66" />
+
+
 ## System Overview & Hardware Architecture
 
 ```text
