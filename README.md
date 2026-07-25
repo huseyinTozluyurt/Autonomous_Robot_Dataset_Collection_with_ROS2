@@ -206,7 +206,7 @@ ros2 run deliverybot_manual_control manual_drive_node
 ```
 
 
-### 🎮 Teleoperation Keyboard Controls
+### Teleoperation Keyboard Controls
 
 When operating the keyboard controller (`manual_drive_node`), ensure the active terminal window remains focused.
 
@@ -220,7 +220,21 @@ When operating the keyboard controller (`manual_drive_node`), ensure the active 
 | <kbd>Ctrl</kbd> + <kbd>C</kbd> | **Exit & Save** | Safely terminates node execution and serializes recorded logs |
 
 
+## 📄 License & Terms of Use
 
+This repository and its associated ROS 2 packages are released under the **[MIT License](LICENSE)**.
+
+```text
+Copyright (c) 2026 Hüseyin Tozluyurt
+```
+
+### Summary of Rights:
+* ✅ **Commercial & Private Use:** You are free to run, modify, and distribute this software for personal, academic, or commercial applications.
+* ✅ **Modification & Distribution:** You may extend or refactor the ROS 2 packages, micro-controller firmware, and logger pipelines.
+* ⚠️ **Attribute Requirement:** The copyright notice and license text must be included in all copies or substantial portions of the Software.
+* 🛡️ **No Warranty:** The software is provided "as is", without warranty of any kind. The authors are not liable for hardware damage or operational incidents.
+
+For full license details, please refer to the **[LICENSE](LICENSE)** file in the root directory.
 
 
 
