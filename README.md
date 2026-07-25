@@ -33,3 +33,20 @@ The system runs on a **Raspberry Pi 4** central compute node, communicating asyn
          v                             v
   2x L298N Drivers            4x HC-SR04 Sensors
  + 4x DC Motors               (Front, Left, Right, Back)
+
+
+📁 Repository & Package Structure
+The repository is structured as a standard colcon workspace (deliverybot_ws/src):
+
+deliverybot_ws/
+└── src/
+    ├── deliverybot_bringup/         # System launch files and parameter YAML configs
+    ├── deliverybot_camera/          # V4L2 USB camera stream publisher
+    ├── deliverybot_description/     # Robot URDF / 3D spatial models
+    ├── deliverybot_interfaces/      # Custom msg / srv interface definitions
+    ├── deliverybot_manual_control/  # Non-blocking terminal teleop keyboard driver
+    ├── deliverybot_navigation/     # Autonomous trajectory & path planning
+    ├── deliverybot_perception/     # Computer vision & segmentation algorithms
+    ├── deliverybot_recording/      # Multi-modal machine learning dataset recorder
+    ├── deliverybot_safety/         # Dynamic ultrasonic obstacle avoidance layer
+    └── deliverybot_stm32/          # Serial bridges for Arduino & STM32 hardware
