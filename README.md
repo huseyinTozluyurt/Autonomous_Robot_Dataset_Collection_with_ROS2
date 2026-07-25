@@ -36,23 +36,15 @@ The system runs on a **Raspberry Pi 4** central compute node, communicating asyn
 ```
 
 
-## 📁 Repository & Package Structure
-The repository is structured as a standard colcon workspace (deliverybot_ws/src):
 
-```text
-deliverybot_ws/
-└── src/
-    ├── deliverybot_bringup/         # System launch files and parameter YAML configs
-    ├── deliverybot_camera/          # V4L2 USB camera stream publisher
-    ├── deliverybot_description/     # Robot URDF / 3D spatial models
-    ├── deliverybot_interfaces/      # Custom msg / srv interface definitions
-    ├── deliverybot_manual_control/  # Non-blocking terminal teleop keyboard driver
-    ├── deliverybot_navigation/     # Autonomous trajectory & path planning
-    ├── deliverybot_perception/     # Computer vision & segmentation algorithms
-    ├── deliverybot_recording/      # Multi-modal machine learning dataset recorder
-    ├── deliverybot_safety/         # Dynamic ultrasonic obstacle avoidance layer
-    └── deliverybot_stm32/          # Serial bridges for Arduino & STM32 hardware
-```
+| Component | Hardware Specification | Function / Interface |
+| :--- | :--- | :--- |
+| **Central Compute** | Raspberry Pi 4 Model B (4GB/8GB) | High-level orchestration, ROS 2 middleware, dataset generation |
+| **Primary Vision** | Konftel Cam10 USB Camera | 640x480 @ 30 FPS (`/dev/video0` via standard V4L2) |
+| **Motor Controller** | Arduino Uno + 2x L298N H-Bridges | 4x DC motors driven via continuous speed ASCII serial commands |
+| **Inertial Unit** | MPU6050 6-DOF Gyro/Accel | Reads yaw angle onboard, streams continuous `IMU yaw=...` telemetry |
+| **Proximity Perception** | STM32F103 ("Blue Pill") | Hardware TIM2 (1µs resolution) polling 4x HC-SR04 sensors |
+
 
 ## 📁 Package Architecture
 
