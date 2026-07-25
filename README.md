@@ -165,12 +165,61 @@ colcon build
 
 # Source workspace environment
 source install/setup.bash
+```
+
+### 2. Running Data Collection & Driving | Multi-Terminal Execution Quick Reference
+Open separate terminals (or use tmux), source install/setup.bash in each, and run:
+
+| Terminal | Subsystem / Node | Execution Command |
+| :---: | :--- | :--- |
+| **1** | **Guided Motor Driver** (Arduino + IMU) | `ros2 run deliverybot_stm32 guided_motor_control_node` |
+| **2** | **Ultrasonic Sensor Bridge** (STM32) | `ros2 run deliverybot_stm32 serial_bridge_node` |
+| **3** | **Konftel Camera Publisher** (V4L2) | `ros2 run deliverybot_camera camera_node` |
+| **4** | **Obstacle Avoidance Safety** | `ros2 run deliverybot_safety obstacle_avoidance_node` |
+| **5** | **ML Dataset Logger** | `ros2 run deliverybot_recording cmd_vel_ml_logger_node --ros-args -p session_name:=Corridor1_ML` |
+| **6** | **Teleop Driver** | `ros2 run deliverybot_manual_control manual_drive_node` |
 
 
+### Another
 
+### 🖥️ Launching system nodes (Multi-Terminal Setup)
 
+Open 6 separate terminals (or use a `tmux` session). Source the ROS 2 workspace environment in each before launching the corresponding node:
 
+```bash
+source ~/deliverybot_ws/install/setup.bash
+```
 
+#### 1️⃣ Terminal 1 — Guided Motor Driver (Arduino + IMU)
+```bash
+ros2 run deliverybot_stm32 guided_motor_control_node
+```
+
+#### 2️⃣ Terminal 2 — Distance Sensor Array Bridge (STM32)
+```bash
+ros2 run deliverybot_stm32 serial_bridge_node
+```
+
+#### 3️⃣ Terminal 3 — Konftel USB Web Camera Publisher
+```bash
+ros2 run deliverybot_camera camera_node
+```
+
+#### 4️⃣ Terminal 4 — Obstacle Avoidance Safety Filter
+```bash
+ros2 run deliverybot_safety obstacle_avoidance_node
+```
+
+#### 5️⃣ Terminal 5 — Multi-Modal Dataset & Vision Logger
+> **Note:** Specify your target recording session name dynamically via ROS 2 CLI parameters:
+```bash
+ros2 run deliverybot_recording cmd_vel_ml_logger_node --ros-args -p session_name:=Corridor1_ML
+```
+
+#### 6️⃣ Terminal 6 — Teleoperation Keyboard Control
+```bash
+ros2 run deliverybot_manual_control manual_drive_node
+```
 
 
 
