@@ -221,17 +221,6 @@ When operating the keyboard controller (`manual_drive_node`), ensure the active 
 
 
 
-### 🎮 Teleoperation Controls
-
-Ensure your terminal cursor is inside the `manual_drive_node` process window while driving:
-
-* <kbd>W</kbd> — **Drive Forward:** Forward motion with IMU closed-loop heading guidance.
-* <kbd>S</kbd> — **Reverse:** Linear backward movement.
-* <kbd>A</kbd> — **Turn Left:** In-place or rotational left pivot.
-* <kbd>D</kbd> — **Turn Right:** In-place or rotational right pivot.
-* <kbd>Space</kbd> — **Force Halt:** Instant safety emergency stop (`/cmd_vel` zeroed).
-* <kbd>Ctrl</kbd> + <kbd>C</kbd> — **Shutdown:** Gracefully disconnects topics and flushes dataset CSV buffers.
-
 
 
 
