@@ -187,33 +187,44 @@ source ~/deliverybot_ws/install/setup.bash
 
 
 
-### 🖥️ Running System Nodes
+### 🖥️ Launching system nodes (Multi-Terminal Setup)
 
-#### ⚡ Option A: One-Command System Launch (Recommended)
-Launch the complete hardware stack, perception, safety layer, and logger in a single command using `deliverybot_bringup`:
+Open 6 separate terminals (or use a `tmux` session). Source the ROS 2 workspace environment in each before launching the corresponding node:
 
 ```bash
-ros2 launch deliverybot_bringup deliverybot_teleop_logging.launch.py session_name:=Corridor1_ML
+source ~/deliverybot_ws/install/setup.bash
 ```
 
----
+#### 1️⃣ Terminal 1 — Guided Motor Driver (Arduino + IMU)
+```bash
+ros2 run deliverybot_stm32 guided_motor_control_node
+```
 
-#### 🛠️ Option B: Manual Multi-Terminal Cheatsheet
-If debugging individual nodes, open 6 terminal sessions, run `source install/setup.bash` in each, and launch in the following sequence:
+#### 2️⃣ Terminal 2 — Distance Sensor Array Bridge (STM32)
+```bash
+ros2 run deliverybot_stm32 serial_bridge_node
+```
 
-| Terminal | Node Name | Role & Hardware | Execution Command |
-| :---: | :--- | :--- | :--- |
-| **Terminal 1** | `guided_motor_control_node` | Arduino Motor Driver & IMU Yaw (`/dev/ttyUSB0`) | `ros2 run deliverybot_stm32 guided_motor_control_node` |
-| **Terminal 2** | `serial_bridge_node` | STM32 Ultrasonic Distance Array (`/dev/ttyUSB1`) | `ros2 run deliverybot_stm32 serial_bridge_node` |
-| **Terminal 3** | `camera_node` | Konftel Cam10 V4L2 Publisher (`/dev/video0`) | `ros2 run deliverybot_camera camera_node` |
-| **Terminal 4** | `obstacle_avoidance_node` | Active Ultrasonic Safety Layer Filter | `ros2 run deliverybot_safety obstacle_avoidance_node` |
-| **Terminal 5** | `cmd_vel_ml_logger_node` | Synchronized Image & CSV Dataset Recorder | `ros2 run deliverybot_recording cmd_vel_ml_logger_node --ros-args -p session_name:=Corridor1_ML` |
-| **Terminal 6** | `manual_drive_node` | Terminal Teleop Keyboard Interface | `ros2 run deliverybot_manual_control manual_drive_node` |
+#### 3️⃣ Terminal 3 — Konftel USB Web Camera Publisher
+```bash
+ros2 run deliverybot_camera camera_node
+```
 
+#### 4️⃣ Terminal 4 — Obstacle Avoidance Safety Filter
+```bash
+ros2 run deliverybot_safety obstacle_avoidance_node
+```
 
+#### 5️⃣ Terminal 5 — Multi-Modal Dataset & Vision Logger
+> **Note:** Specify your target recording session name dynamically via ROS 2 CLI parameters:
+```bash
+ros2 run deliverybot_recording cmd_vel_ml_logger_node --ros-args -p session_name:=Corridor1_ML
+```
 
-
-
+#### 6️⃣ Terminal 6 — Teleoperation Keyboard Control
+```bash
+ros2 run deliverybot_manual_control manual_drive_node
+```
 
 
 
