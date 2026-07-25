@@ -62,7 +62,7 @@ The system runs on a **Raspberry Pi 4** central compute node, communicating asyn
 | **`deliverybot_stm32`** | Serial bridges for Arduino motor driver & STM32 hardware |
 
 
-## 🕹️ Core ROS 2 Nodes & Architecture
+## Core ROS 2 Nodes & Architecture
 
 ### 1. `guided_motor_control_node`
 * **Package:** `deliverybot_stm32`
