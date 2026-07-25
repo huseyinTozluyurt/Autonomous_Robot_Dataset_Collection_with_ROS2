@@ -129,7 +129,14 @@ dataset/
         ├── Corridor1_ML_frame_000001.jpg
         └── Corridor1_ML_frame_000002.jpg
 ```
-## Another
+## Logged CSV File Structure
+```text
+timestamp_sec,timestamp_nanosec,image_filename,cmd_linear_x,cmd_angular_z,est_left_pwm,est_right_pwm,imu_yaw,us_front,us_left,us_right,us_back
+1784822405,123456789,Corridor1_ML_frame_000000.jpg,0.2000,0.0000,220,220,12.45,150.0,35.2,38.1,210.0
+```
+Precision Timestamping: Both timestamp_sec and timestamp_nanosec are synchronized directly from ROS 2 clock headers to enable sub-millisecond temporal interpolation during neural network training.
+
+## Prerequisites
 
 
 
