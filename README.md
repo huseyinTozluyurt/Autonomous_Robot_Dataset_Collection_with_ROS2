@@ -138,7 +138,6 @@ timestamp_sec,timestamp_nanosec,image_filename,cmd_linear_x,cmd_angular_z,est_le
 
 ## Prerequisites
 
-
 * **Operating System:** Ubuntu 22.04 LTS / 24.04 LTS or Raspberry Pi OS (64-bit)
 * **ROS2:** Humble Hawksbill or Jazzy Jalisco
 * **Dependencies:**
@@ -148,6 +147,24 @@ sudo apt install -y python3-colcon-common-extensions python3-rosdep python3-pip 
 pip3 install pyserial opencv-python cv-bridge
 ```
 
+## Cloning & Building Workspace
+
+```bash
+# Clone the repository
+git clone [https://github.com/huseyinTozluyurt/Autonomous_Robot_Dataset_Collection_with_ROS2.git](https://github.com/huseyinTozluyurt/Autonomous_Robot_Dataset_Collection_with_ROS2.git) ~/deliverybot_ws
+
+# Navigate to workspace
+cd ~/deliverybot_ws
+
+# Install ROS 2 dependencies
+rosdep update
+rosdep install --from-paths src --ignore-src -r -y
+
+# Build the workspace
+colcon build
+
+# Source workspace environment
+source install/setup.bash
 
 
 
